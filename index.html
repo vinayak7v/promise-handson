@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Q1:-Write one example explaining how you can write a callback function.</h3>
+    <pre class="funcn">Function:- function Sum(a,b){
+        return a+b;
+     }
+    
+     function Display(batch,month){
+        console.log(`I am from EA${batch} Month: ${month}`);
+     }
+     Display(Sum(10,12),"Feb")</pre>
+    <hr>
+      
+
+    <h3>Q2:-"Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+        Explain callback hell.
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7"</h3>
+        <pre class="funcn">Function:-
+            let count = 0;
+            setTimeout(() => {
+                console.log(++count);
+                setTimeout(() => {
+                    console.log(++count);
+                    setTimeout(() => {
+                        console.log(++count);
+                        setTimeout(() => {
+                            console.log(++count);
+                            setTimeout(() => {
+                                console.log(++count);
+                                setTimeout(() => {
+                                    console.log(++count);
+                                    setTimeout(() =>{
+                                        console.log(++count);
+                                    },7000);
+                                }, 6000);
+                            }, 5000);
+                        }, 4000);
+                    }, 3000);
+                }, 2000);
+            }, 1000);
+            
+            
+            function print(num){
+                for(let i = 1 ;i <= num ; i++){
+                    setTimeout(() => {
+                       console.log(i); 
+                    }, i*(i+1)/2 * 1000);
+                }
+            }
+            
+            </pre>
+        <hr>
+
+        <h3>Q3:-"Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7"</h3>
+            <pre class="funcn">Function:-function printNumbersWithDelay() {
+                let delay = 0;
+                const promises = [];
+              
+                for (let i = 1; i <= 7; i++) {
+                  promises.push(new Promise(resolve => {
+                    setTimeout(() => {
+                      console.log(i);
+                      resolve();
+                    }, delay);
+                  }));
+                  delay += i * 1000; 
+                }
+              
+                return Promise.all(promises);
+              }
+              
+              printNumbersWithDelay()
+                .then(() => console.log('Done printing numbers'));</pre>
+            <hr>
+
+
+            <h3>Q4:-"Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+                then it should go to reject the state and catch the error and print Promise Rejected "</h3>
+                <pre class="funcn">Function:- const P= new Promise((res, rej)=>{
+                    let Batch = "EA22";
+                    if(Batch === 'EA22'){
+                        res('Welcome to EA22 Batch');
+                    }
+                    else{
+                        rej('Sorry, Bad entry!')
+                    }
+                })
+                P.then((d) => console.log(d)).catch((err) => console.log(err))
+                </pre>
+                <hr>
+
+            <h3>Q5:-Create examples to explain callback function</h3>
+            <strong class="ans">Ans:- A callback function is a function that is passed as an argument to another function and is called when that function completes its task.</strong> 
+            <pre class="funcn">Example:- function Sum(a,b){
+                return a+b;
+             }
+            
+             function Display(batch,month){
+                console.log(`I am from EA${batch} Month: ${month}`);
+             }
+             Display(Sum(10,12),"Feb")</pre>
+            <hr>
+
+            <h3>Q6:-Create examples to explain callback hell function</h3>
+            <strong class="ans">Ans:- Callback Hell is essentially nested callbacks stacked below one another forming a pyramid structure. </strong>
+            <pre class="funcn">Example:-
+                let count = 0;
+                setTimeout(() => {
+                    console.log(++count);
+                    setTimeout(() => {
+                        console.log(++count);
+                        setTimeout(() => {
+                            console.log(++count);
+                            setTimeout(() => {
+                                console.log(++count);
+                                setTimeout(() => {
+                                    console.log(++count);
+                                    setTimeout(() => {
+                                        console.log(++count);
+                                        setTimeout(() =>{
+                                            console.log(++count);
+                                        },7000);
+                                    }, 6000);
+                                }, 5000);
+                            }, 4000);
+                        }, 3000);
+                    }, 2000);
+                }, 1000);
+                
+                
+                function print(num){
+                    for(let i = 1 ;i <= num ; i++){
+                        setTimeout(() => {
+                           console.log(i); 
+                        }, i*(i+1)/2 * 1000);
+                    }
+                }</strong>
+            <hr>
+
+
+            <h3>Q7:-Create examples to explain promises function</h3>
+            <strong class="ans">Ans:-Promise.then() takes two arguments, a callback for success and another for failure. Both are optional, so you can add a callback for success or failure only.</strong>
+            <pre class="funcn">Example:-
+                // Promise - 
+                // let c = 1;
+                // const promise = new Promise((res, rej) => {
+                //     if(c % 2 === 0){
+                //         res('Even');
+                //     }
+                //     else{
+                //         rej('odd')
+                //     }
+                // })
+                // promise
+                // .catch((err) => console.log(err))
+                // .then((a) => console.log(a))</pre>
+            <hr>
+
+            <h3>Q8:-Create examples to explain async await function</h3>
+            <strong class="ans">Ans:-The await keyword is used inside the async function to wait for the asynchronous operation.</strong>
+             <pre class="funcn">Example:-function Dis(nums, timeout){
+                return new Promise((res, rej) => {
+                    setTimeout(() => {
+                        console.log(nums);
+                        res("Promise Resolve...!!")
+                    }, timeout);
+                })
+            }
+            
+            async function Call(){
+                 Dis("A", 2000);
+                await Dis("E", 1000);
+                 Dis("I", 4000);
+                await Dis("O", 3000);
+                 Dis("U", 5000);
+            }
+            
+            Call();
+            
+            
+              
+                </pre>
+            <hr>
+
+            <h3>Q9:-Create examples to explain promise.all function</h3>
+            <strong class="ans">Ans:-Promise.all() method asynchronously rejects the value of the promise that already rejected, whether or not the other promises have resolved. </strong>
+            <pre class="funcn">Example:-  // const p1 = new Promise((res, rej) => {
+                //     res('Hello')
+                // })
+                // const p2 = new Promise((res, rej) => {
+                //     res('I am from')
+                // })
+                // const p3 = new Promise((res, rej) => {
+                //     res('PrepBytes')
+                // })
+                
+                
+                // Promise.all([p1, p2, p3]).then((d) => console.log(d)).catch((err) => console.log(err))</pre>
+    
+</body>
+<script src="./script.js"></script>
+</html>
